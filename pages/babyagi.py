@@ -8,6 +8,8 @@ from langchain.vectorstores.base import VectorStore
 from pydantic import BaseModel, Field
 import streamlit as st
 
+ st.title("Baby-Artificial-general-intelligence")
+    
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 class TaskCreationChain(LLMChain):
     @classmethod
@@ -252,7 +254,7 @@ def main():
     #with st.sidebar:
        # openai_api_key = st.text_input('Your OpenAI API KEY', type="password")
 
-    st.title("Baby-Artificial-general-intelligence")
+   
     objective = st.text_input("Input Ultimate goal", "Solve world hunger")
     first_task = st.text_input("Input Where to start", "Develop a task list")
     max_iterations = st.number_input("Max iterations", value=3, min_value=1, step=1)
