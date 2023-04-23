@@ -249,7 +249,7 @@ class BabyAGI(BaseModel):
       #  initial_sidebar_state="expanded",
        # page_title="Baby-Artificial-general-intelligence",
        # layout="centered",
-    )
+    #)
 
     #with st.sidebar:
        # openai_api_key = st.text_input('Your OpenAI API KEY', type="password")
