@@ -8,7 +8,7 @@ from langchain.vectorstores.base import VectorStore
 from pydantic import BaseModel, Field
 import streamlit as st
 
- st.title("Baby-Artificial-general-intelligence")
+st.title("Baby-Artificial-general-intelligence")
     
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 class TaskCreationChain(LLMChain):
