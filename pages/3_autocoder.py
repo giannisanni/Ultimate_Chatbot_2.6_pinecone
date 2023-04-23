@@ -4,7 +4,7 @@ import os
 import openai
 
 st.set_page_config(page_title="GPT-4 Auto Coder")
-st.title("GPT-4 Auto Coder and Self Improver 🤖")
+st.title("Auto Coder")
 
 # Sidebar
 with st.sidebar:
