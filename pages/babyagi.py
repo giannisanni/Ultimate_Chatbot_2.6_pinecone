@@ -244,11 +244,11 @@ class BabyAGI(BaseModel):
         return controller
 
 
-def main():
-    st.set_page_config(
-        initial_sidebar_state="expanded",
-        page_title="Baby-Artificial-general-intelligence",
-        layout="centered",
+#def main():
+   # st.set_page_config(
+      #  initial_sidebar_state="expanded",
+       # page_title="Baby-Artificial-general-intelligence",
+       # layout="centered",
     )
 
     #with st.sidebar:
