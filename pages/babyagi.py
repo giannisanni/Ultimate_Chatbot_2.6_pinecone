@@ -244,16 +244,6 @@ class BabyAGI(BaseModel):
         return controller
 
 
-#def main():
-   # st.set_page_config(
-      #  initial_sidebar_state="expanded",
-       # page_title="Baby-Artificial-general-intelligence",
-       # layout="centered",
-    #)
-
-    #with st.sidebar:
-       # openai_api_key = st.text_input('Your OpenAI API KEY', type="password")
-
    
     objective = st.text_input("Input Ultimate goal", "Solve world hunger")
     first_task = st.text_input("Input Where to start", "Develop a task list")
