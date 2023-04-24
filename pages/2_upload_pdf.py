@@ -27,7 +27,7 @@ if pdf_file_uploaded is not None:
         
     def save_file_to_folder(uploadedFile):
             # Save uploaded file to 'content' folder.
-            save_folder = 'C:/Users/gsanr/OneDrive/Desktop/filefolder'
+            save_folder = 'content'
             save_path = Path(save_folder, uploadedFile.name)
             with open(save_path, mode='wb') as w:
                 w.write(uploadedFile.getvalue())
@@ -37,7 +37,7 @@ if pdf_file_uploaded is not None:
                 
     save_file_to_folder(pdf_file_uploaded)
     
-    loader = UnstructuredPDFLoader(f"C:/Users/gsanr/OneDrive/Desktop/filefolder/{pdf_file_uploaded.name}")
+    loader = UnstructuredPDFLoader(f"contnent/{pdf_file_uploaded.name}")
 
     data = loader.load()
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
