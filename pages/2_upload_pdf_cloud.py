@@ -12,9 +12,9 @@ st.title('Upload PDF file..')
 
 pdf_file_uploaded = st.file_uploader(label="Your PDF file")
 
-OPENAI_API_KEY = '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'
-PINECONE_API_KEY = 'e7361a69-30fa-4a6d-b2e1-305f0b729d0e'
-PINECONE_API_ENV = 'us-east4-gcp'
+OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
+PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
+PINECONE_API_ENV = st.secrets["PINECONE_API_ENV"]
 
 # initialize pinecone
 pinecone.init(
