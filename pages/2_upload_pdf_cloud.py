@@ -24,12 +24,14 @@ pinecone.init(
 index_name = "pineconevoicebot"
 
 if pdf_file_uploaded is not None:
-    loader = UnstructuredPDFLoader(pdf_file_uploaded)
+    with st.spinner('Uploading and processing document...'):
+        loader = UnstructuredPDFLoader(pdf_file_uploaded)
 
-    data = loader.load()
-    text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-    texts = text_splitter.split_documents(data)
+        data = loader.load()
+        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
+        texts = text_splitter.split_documents(data)
 
-    embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+        embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
-    docsearch = Pinecone.from_texts([t.page_content for t in texts], embeddings, index_name=index_name)
+        docsearch = Pinecone.from_texts([t.page_content for t in texts], embeddings, index_name=index_name)
+    st.success('Document uploaded and processed!')
