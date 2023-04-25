@@ -49,7 +49,7 @@ qa = RetrievalQA.from_chain_type(
     retriever=index.as_retriever(),
 )
 
-llm = OpenAIChat(temperature=0
+llm = OpenAIChat(temperature=0)
 llm_math = LLMMathChain(llm=llm, verbose=True)
 google_search = GoogleSearchAPIWrapper(k=1)
 
