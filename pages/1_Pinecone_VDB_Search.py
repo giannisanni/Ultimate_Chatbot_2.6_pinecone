@@ -7,7 +7,7 @@ from langchain.llms import OpenAIChat
 from langchain.chains.question_answering import load_qa_chain
 from langchain.chains.conversation.memory import ConversationBufferMemory, ConversationBufferWindowMemory
 from langchain.chains import RetrievalQA
-from langchain import LLMChain
+from langchain import LLMChain, LLMMathChain
 from langchain.llms import OpenAI
 from langchain.agents import AgentExecutor, Tool, ZeroShotAgent
 from langchain import GoogleSearchAPIWrapper
@@ -49,6 +49,8 @@ qa = RetrievalQA.from_chain_type(
     retriever=index.as_retriever(),
 )
 
+llm = OpenAIChat(temperature=0
+llm_math = LLMMathChain(llm=llm, verbose=True)
 google_search = GoogleSearchAPIWrapper(k=1)
 
 # my tools
@@ -63,6 +65,11 @@ tools = [
         func=google_search.run,
         description="useful for when you need to answer questions about current events."
     ),
+    Tool(
+        name="Math",
+        func=llm_math.run,
+        description="Useful for when you need to answer questions about math."
+    )
 ]
 
 prefix = """Have a conversation with a human, answering the following questions as best you can based on the context and memory available.
