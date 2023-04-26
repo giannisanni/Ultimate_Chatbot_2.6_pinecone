@@ -14,7 +14,7 @@ from langchain import GoogleSearchAPIWrapper
 import os
 from langchain.callbacks.base import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
-api = "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" #st.sidebar.text_input("API-KEY", type="password")
+api = "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" #st.sidebar.text_input("API-KEY", type="password")
 # from api_key_gpt import API_KEYs
 PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
 PINECONE_API_ENV = st.secrets["PINECONE_API_ENV"]
