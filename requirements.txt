@@ -108,5 +108,5 @@ langchain
 google-api-python-client
 faiss-cpu
 pypdf
-pinecone-client
+
 
