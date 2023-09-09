@@ -33,5 +33,5 @@ if pdf_file_uploaded is not None:
 
         embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
-        docsearch = Pinecone.from_texts([t.page_content for t in texts], embeddings, index_name=index)
+        docsearch = Pinecone.from_texts([t.page_content for t in texts], embeddings, index_name=pinecone.Index)
     st.success('Document uploaded and processed!')
