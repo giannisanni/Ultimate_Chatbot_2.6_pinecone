@@ -48,12 +48,12 @@ st.set_page_config(
     #add_logo(logo_path='C:/Users/gsanr/Downloads/streamlit_sidebar_banner-image.png', width=300, height=80))
 
 # password
-api = "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" #st.sidebar.text_input("API-KEY", type="password")
+api = "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" #st.sidebar.text_input("API-KEY", type="password")
 # from api_key_gpt import API_KEYs
 os.environ["LANGCHAIN_HANDLER"] = "langchain"
 os.environ['SERPAPI_API_KEY'] = "0d1c57a0026ffa69769de5aab1a43def7f7b902b361b8d42989921d0ce540ae2"
 os.environ['WOLFRAM_ALPHA_APPID'] = "H342QE-H9X8JTY58A"
-os.environ["OPENAI_API_KEY"] = "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"#api
+os.environ["OPENAI_API_KEY"] = "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"#api
 os.environ["APIFY_API_TOKEN"] = "apify_api_ZUT5kiG3E0jMsceVQOBJZ5Xnxrl8yn1zwDMb"
 os.environ["GOOGLE_CSE_ID"] = "2028b6b5a7ab74bbe"
 os.environ['GOOGLE_API_KEY'] = "AIzaSyCXl_MN9qS6rZgcqkX572nRGNdPSb7PujE"
