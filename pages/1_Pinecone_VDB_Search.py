@@ -124,7 +124,7 @@ if query:
 
 if st.session_state['generated']:
     for i in range(len(st.session_state["generated"]) - 1, -1, -1):
-        st.success(st.session_state["generated"][i], icon="??")
+        st.success(st.session_state["generated"][i], icon="🤖")
         st.info(st.session_state["past"][i])
 
 
