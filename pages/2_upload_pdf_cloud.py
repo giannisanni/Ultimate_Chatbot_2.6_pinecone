@@ -21,7 +21,7 @@ pinecone.init(
     api_key=PINECONE_API_KEY,  # find at app.pinecone.io
     environment=PINECONE_API_ENV  # next to api key in console
 )
-index = pinecone.Index('pineconevoicebot')
+index_name = 'pineconevoicebot'
 
 if pdf_file_uploaded is not None:
     with st.spinner('Uploading and processing document...'):
@@ -33,5 +33,5 @@ if pdf_file_uploaded is not None:
 
         embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
 
-        docsearch = Pinecone.from_texts([t.page_content for t in texts], embeddings, index_name=pinecone.Index)
+        docsearch = Pinecone.from_texts([t.page_content for t in texts], embeddings, index_name=index_name)
     st.success('Document uploaded and processed!')
