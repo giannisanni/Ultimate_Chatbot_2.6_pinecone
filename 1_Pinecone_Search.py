@@ -29,7 +29,7 @@ docsearch = Pinecone.from_texts('', embeddings, index_name=index_name)
 
 @st.cache_data
 def vector_index_query(question):
-    llm = OpenAIChat(model="gpt-3.5-turbo", temperature=0.1, openai_api_key=OPENAI_API_KEY)
+    llm = OpenAIChat(model="gpt-3.5-turbo", temperature=0.3, openai_api_key=OPENAI_API_KEY)
 
 
     chain = load_qa_chain(llm, chain_type="stuff")
