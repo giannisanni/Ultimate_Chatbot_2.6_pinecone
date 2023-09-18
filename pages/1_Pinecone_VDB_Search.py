@@ -73,7 +73,7 @@ tools = [
 ]
 
 prefix = """Have a conversation with a human, answering the following questions as best you can based on the context and memory available.
-            You have access to tools. you also like to use slang words"""
+            You have access to tools. always use google search when ask for the time or date."""
 suffix = """Begin!"
 
 {chat_history}
