@@ -1,37 +1,52 @@
 import streamlit as st
-from pathlib import Path
-from langchain.document_loaders import UnstructuredPDFLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain.embeddings.openai import OpenAIEmbeddings
-import pinecone
-from langchain.vectorstores import Chroma, Pinecone
-from langchain.llms import OpenAI
-from langchain.chains.question_answering import load_qa_chain
+from gtts import gTTS
+import pdfplumber
+import docx
+import ebooklib
+from ebooklib import epub
+import time  # Import the time module
 
-st.title('Upload PDF file..')
+st.title("Gianni's AudioBook App")
+st.info('Convert pdf to audiobook')
+book = st.file_uploader('Please upload your file', type=['pdf', 'txt', 'docx', 'epub'])
 
-pdf_file_uploaded = st.file_uploader(label="Your PDF file")
+def extract_text_from_docx(file):
+    doc = docx.Document(file)
+    full_text = []
+    for para in doc.paragraphs:
+        full_text.append(para.text)
+    return '\n'.join(full_text)
 
-OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
-PINECONE_API_KEY = st.secrets["PINECONE_API_KEY"]
-PINECONE_API_ENV = st.secrets["PINECONE_API_ENV"]
+def extract_text_from_epub(file):
+    book = epub.read_epub(file)
+    chapters = []
+    for item in book.get_items():
+        if item.get_type() == ebooklib.ITEM_DOCUMENT:
+            chapters.append(item.get_content())
+    return '\n'.join(chapters)
 
-# initialize pinecone
-pinecone.init(
-    api_key=PINECONE_API_KEY,  # find at app.pinecone.io
-    environment=PINECONE_API_ENV  # next to api key in console
-)
-index_name = 'pineconevoicebot'
+if book:
+    if book.type == 'application/pdf':
+        all_text = ""
+        with pdfplumber.open(book) as pdf:
+            for text in pdf.pages:
+                single_page_text = text.extract_text()
+                all_text = all_text + '\n' + str(single_page_text)
 
-if pdf_file_uploaded is not None:
-    with st.spinner('Uploading and processing document...'):
-        loader = UnstructuredPDFLoader(pdf_file_uploaded)
+    elif book.type == 'text/plain':
+        all_text = book.read().decode("utf-8")
+    elif book.type == 'application/vnd.openxmlformats-officedocument.wordprocessingml.document':
+        all_text = extract_text_from_docx(book)
+    elif book.type == 'application/epub+zip':
+        all_text = extract_text_from_epub(book)
 
-        data = loader.load()
-        text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
-        texts = text_splitter.split_documents(data)
+    # Add a delay to avoid making too many requests to the TTS API
+    time.sleep(2)  # You can adjust the delay time as needed
 
-        embeddings = OpenAIEmbeddings(openai_api_key=OPENAI_API_KEY)
+    tts = gTTS(all_text)
+    tts.save('audiobook.mp3')
+    audio_file = open('audiobook.mp3', 'rb')
+    audio_bytes = audio_file.read()
+    st.audio(audio_bytes, format='audio/mpeg', start_time=0)  # Use 'audio/mpeg' format
 
-        docsearch = Pinecone.from_texts([t.page_content for t in texts], embeddings, index_name=index_name)
-    st.success('Document uploaded and processed!')
+
