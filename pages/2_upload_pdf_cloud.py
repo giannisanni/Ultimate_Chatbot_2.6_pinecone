@@ -12,7 +12,7 @@ st.title('Upload PDF file..')
 
 pdf_file_uploaded = st.file_uploader(label="Your PDF file")
 
-OPENAI_API_KEY = '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'
+OPENAI_API_KEY = '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'
 PINECONE_API_KEY = '05a761ef-b949-4f57-b904-787223d2ea55'
 PINECONE_API_ENV = 'us-west4-gcp'
 
