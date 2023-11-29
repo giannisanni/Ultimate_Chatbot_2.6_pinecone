@@ -21,7 +21,7 @@ pinecone.init(
     api_key=PINECONE_API_KEY,  # find at app.pinecone.io
     environment=PINECONE_API_ENV  # next to api key in console
 )
-index_name = "x"
+index_name = "pineconevoicebot"
 
 if pdf_file_uploaded is not None:
     with st.spinner('Uploading and processing document...'):
