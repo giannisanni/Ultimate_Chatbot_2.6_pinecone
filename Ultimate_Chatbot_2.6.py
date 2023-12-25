@@ -354,7 +354,7 @@ llm = OpenAI(temperature=0, model_name=MODEL)
 llm = ChatOpenAI(temperature=0)
 llm1 = OpenAI(temperature=0)
 #search = SerpAPIWrapper()
-llm_math_chain = LLMMathChain(llm=llm1, verbose=True)
+llm_math_chain = LLMMathChain(llm=llm, verbose=True)
 google_search = GoogleSearchAPIWrapper(k=1)
 tools = [
     Tool(
