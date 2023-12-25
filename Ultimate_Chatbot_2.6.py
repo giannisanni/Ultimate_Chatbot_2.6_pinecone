@@ -351,10 +351,10 @@ MODEL = "gpt-3.5-turbo"
 llm = OpenAI(temperature=0, model_name=MODEL)
 
 # serpapi
-llm = ChatOpenAI(temperature=0)
-llm1 = OpenAI(temperature=0)
+llm1 = ChatOpenAI(temperature=0)
+llm2 = OpenAI(temperature=0)
 #search = SerpAPIWrapper()
-llm_math_chain = LLMMathChain(llm=llm, verbose=True)
+llm_math_chain = LLMMathChain(llm=llm1, verbose=True)
 google_search = GoogleSearchAPIWrapper(k=1)
 tools = [
     Tool(
@@ -378,7 +378,7 @@ prompt = ZeroShotAgent.create_prompt(
 )
 memory = ConversationBufferMemory(memory_key="chat_history")
 
-llm_chain = LLMChain(llm=OpenAI(temperature=0), prompt=prompt)
+llm_chain = LLMChain(llm=ChatOpenAI(temperature=0), prompt=prompt)
 agent = ZeroShotAgent(llm_chain=llm_chain, tools=tools, verbose=True)
 agent_chain = AgentExecutor.from_agent_and_tools(agent=agent, tools=tools, verbose=True, memory=memory)
 
