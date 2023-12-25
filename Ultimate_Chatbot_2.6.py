@@ -364,7 +364,7 @@ tools = [
     ),
 ]
 
-prefix = """Have a conversation with a human, answering the following questions as best you can. You have access to the following tools:"""
+prefix = """Have a conversation with a human, answering the following questions as best you can. You have access to the google search, always use this tool to verify answers to make sure you have the most up to date answer"""
 suffix = """Begin!"
 {chat_history}
 Question: {input}
